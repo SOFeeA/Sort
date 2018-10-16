@@ -5,6 +5,9 @@ import java.util.List;
 import exception.exIsSorted;
 
 public abstract class SortAlgorithm {
-	private List<Integer> mList = new ArrayList<Integer>();
-	public abstract Integer executeNextSwap() throws exIsSorted;
+	protected List<Integer> mList = new ArrayList<Integer>();
+	public abstract Integer[] executeNextSwap() throws exIsSorted;
+	public SortAlgorithm( List<Integer> iList ) {
+		mList = iList;
+	}
 }
