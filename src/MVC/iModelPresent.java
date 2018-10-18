@@ -7,4 +7,5 @@ public interface iModelPresent {
 	public List<Integer> getList();
 	public Integer getElement(Integer iPos);
 	public void registerView(iObserver iView);
+	public int getSize();
 }

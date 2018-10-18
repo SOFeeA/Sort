@@ -44,7 +44,8 @@ public class InsertionSort extends SortAlgorithm {
 
 	@Override
 	protected void initNewList() {
-		// TODO Auto-generated method stub
-		
+		mCurrI = 0;
+		mCurrJ=0;
+		mCurrSwap=0;
 	}
 }

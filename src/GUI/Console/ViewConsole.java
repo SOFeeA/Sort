@@ -13,9 +13,7 @@ public class ViewConsole extends View {
 
 	@Override
 	public void update() {
-		System.out.print(mModel.getList());
-		Integer[] lLastSwap = mModel.getLastSwapPos();
-		System.out.print(lLastSwap[0]); 
+		System.out.print(mModel.getList()); 
 		System.out.println();
 	}
 

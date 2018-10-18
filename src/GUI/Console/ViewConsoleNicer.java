@@ -8,9 +8,9 @@ import MVC.View;
 import MVC.iController;
 import Model.Model;
 
-public class ViewConsoleNice extends View {
+public class ViewConsoleNicer extends View {
 
-	public ViewConsoleNice(Model iModel) {
+	public ViewConsoleNicer(Model iModel) {
 		super(iModel);
 	}
 
@@ -33,12 +33,18 @@ public class ViewConsoleNice extends View {
 	private void printDiff(Integer[] lLastSwap) {
 		List<String> lListString = new ArrayList<String>();
 		List<Integer> lList = mModel.getList();
+		Integer lSwapPos1 = lLastSwap[0];
+		Integer lSwapPos2 = lLastSwap[1];
+		Integer lSwap1 = lList.get(lSwapPos2);
+		Integer lSwap2 = lList.get(lSwapPos1);
 		for (int i = 0; i < lList.size(); i++) {
 			lListString.add("  ");
 		}
-		lListString.set(lLastSwap[0], ">>");
-		lListString.set(lLastSwap[1], "<<");
-		System.out.println(lListString);
+		lListString.set(lSwapPos1, ">>");
+		lListString.set(lSwapPos2, "<<");
+		System.out.print(lListString);
+		System.out.print(" Swap: ["+lSwap1+"], ["+lSwap2+"]");
+		System.out.println();
 	}
 
 	@Override

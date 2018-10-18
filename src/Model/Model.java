@@ -9,7 +9,7 @@ import Algorithm.SortAlgorithm;
 import MVC.iModelPresent;
 import MVC.iObserver;
 import MVC.eSortAlgorithm;
-import MVC.iController; 
+import MVC.iController;
 
 public class Model implements iController, iModelPresent {
 	private SortAlgorithm mSortAlgorithm = null;
@@ -20,6 +20,7 @@ public class Model implements iController, iModelPresent {
 	public Model() {
 		mSortAlgorithm = new BubbleSort(mList);
 	}
+
 	@Override
 	public Integer[] getLastSwapPos() {
 		return mLastSwap;
@@ -39,10 +40,11 @@ public class Model implements iController, iModelPresent {
 	public void sort() {
 		try {
 			while (true) {
-				mLastSwap = mSortAlgorithm.executeNextSwap(); 
+				mLastSwap = mSortAlgorithm.executeNextSwap();
 				mObserver.update();
 			}
-		} catch (Algorithm.exIsSorted e) {  }
+		} catch (Algorithm.exIsSorted e) {
+		}
 	}
 
 	@Override
@@ -53,23 +55,35 @@ public class Model implements iController, iModelPresent {
 			break;
 		case eSortInsert:
 			mSortAlgorithm = new InsertionSort(mList);
-			break; 
+			break;
 		}
 		mSortAlgorithm.setList(mList);
 	}
+
 	@Override
-	public void shuffle() { 
+	public void shuffle() {
 		mList = new ArrayList<Integer>();
 		mList.add(88);
 		mList.add(10);
-		mList.add(99);
 		mList.add(72);
 		mList.add(50);
+		mList.add(11);
+		mList.add(99);
+		mList.add(25);
+		mList.add(35);
+		mList.add(75);
+		mList.add(64);
 		mObserver.update();
 		mSortAlgorithm.setList(mList);
 	}
+
 	@Override
 	public void registerView(iObserver iView) {
 		mObserver = iView;
+	}
+
+	@Override
+	public int getSize() {
+		return mList.size();
 	}
 }

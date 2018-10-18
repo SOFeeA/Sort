@@ -9,6 +9,7 @@ public class ControllerConsole extends Controller {
 		super(iModel);
 	}
 	public void push() {
+		mModel.shuffle();
 		mModel.sort();
 	}
 
