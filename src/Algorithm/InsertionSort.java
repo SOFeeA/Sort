@@ -1,23 +1,44 @@
 package Algorithm;
 
-import java.util.List;
-
-import exception.exIsSorted;
+import java.util.List; 
 
 public class InsertionSort extends SortAlgorithm {
+
+	private Integer mCurrI = 0;
+	private Integer mCurrJ;
+	private Integer mCurrSwap;
 
 	public InsertionSort(List<Integer> iList) {
 		super(iList);
 	}
 
 	@Override
-	public Integer[] executeNextSwap() throws exIsSorted {
-		for(Integer i = 2; i <= mList.size();i++) {
-			
+	public Integer[] executeNextSwap() throws exIsSorted { 
+		Integer[] rReturn = null;
+		initStep();
+		while (mCurrJ > 0 && mList.get(mCurrJ-1) > mCurrSwap) {
+			rReturn = step();
 		}
-		Integer[] rPos = new Integer[2];
-		rPos[0]=2;
-		rPos[1]=2;
-		return rPos ;
+		return rReturn;
+	}
+
+	private void initStep() throws exIsSorted {
+		mCurrI++;
+		if (mCurrI > mList.size() - 1) {
+			throw new exIsSorted();
+		}
+
+		mCurrSwap = mList.get(mCurrI);
+		mCurrJ = mCurrI; 
+	}
+
+	private Integer[] step() {
+		Integer[] rReturn;
+		Integer h = mList.get(mCurrJ);
+		mList.set(mCurrJ, mList.get(mCurrJ - 1));
+		mList.set(mCurrJ-1, h);
+		mCurrJ--;
+		rReturn = new Integer[] { mCurrJ, mCurrI};
+		return rReturn;
 	}
 }

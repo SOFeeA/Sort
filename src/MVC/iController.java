@@ -1,4 +1,4 @@
-package generate;
+package MVC; 
 
 /*******************************************************************************
  * File generated from the UML::iController uml Interface
