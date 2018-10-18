@@ -1,4 +1,6 @@
-package generate;
+package MVC;
+
+
 
 
 public enum eSortAlgorithm { 
