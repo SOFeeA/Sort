@@ -14,7 +14,7 @@ public class InsertionSort extends SortAlgorithm {
 
 	@Override
 	public Integer[] executeNextSwap() throws exIsSorted { 
-		Integer[] rReturn = null;
+		Integer[] rReturn = new Integer[] {0,0};
 		initStep();
 		while (mCurrJ > 0 && mList.get(mCurrJ-1) > mCurrSwap) {
 			rReturn = step();
@@ -40,5 +40,11 @@ public class InsertionSort extends SortAlgorithm {
 		mCurrJ--;
 		rReturn = new Integer[] { mCurrJ, mCurrI};
 		return rReturn;
+	}
+
+	@Override
+	protected void initNewList() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -6,4 +6,5 @@ public interface iModelPresent {
 	public Integer[] getLastSwapPos();
 	public List<Integer> getList();
 	public Integer getElement(Integer iPos);
+	public void registerView(iObserver iView);
 }

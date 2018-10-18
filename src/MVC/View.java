@@ -9,6 +9,7 @@ public abstract class View implements iObserver {
 	public  Controller mController = null; 
 	public View(Model iModel) {
 		mModel = iModel; 
+		mModel.registerView(this);
 	} 
 	public abstract Controller createController(); 
 }

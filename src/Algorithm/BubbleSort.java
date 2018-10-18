@@ -6,12 +6,12 @@ import Algorithm.SortAlgorithm;
 
 public class BubbleSort extends SortAlgorithm {
 
-	private Integer mPosLeft;
+	private Integer mPosLeft=-1;
 	private Integer mCurrI = -1;
 
 	public BubbleSort(List<Integer> iList) {
 		super(iList);
-		mPosLeft = iList.size() + 1;
+		initNewList();
 	}
 
 	@Override
@@ -37,5 +37,10 @@ public class BubbleSort extends SortAlgorithm {
 		// } // Ende innere for-Schleife
 		// } // Ende ‰uﬂere for-Schleife
 		return new Integer[] { mCurrI, rPosSwap };
+	}
+
+	@Override
+	protected void initNewList() {
+		mPosLeft = mList.size() + 1;
 	}
 }
