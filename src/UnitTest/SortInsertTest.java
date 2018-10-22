@@ -3,44 +3,10 @@ package UnitTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import Algorithm.InsertionSort; 
+import Algorithm.SortInsert; 
 
-class InsertionSortTest extends SortAlgorithmTest {
-
-	@BeforeEach
-	void setUp() throws Exception {
-		List<Integer> lList = new ArrayList<Integer>();
-		lList.add(88);
-		lList.add(10);
-		lList.add(5);
-		lList.add(99);
-		mCUT = new InsertionSort( lList );
-		
-
-		mExpectedSwap.clear();
-		
-		//88 10 5 99
-		mExpectedSwap.add(0);
-		mExpectedSwap.add(1);
-		
-		//10 88 5 99
-		mExpectedSwap.add(0);
-		mExpectedSwap.add(2);
-		/*
-
-		//10 5 80 99
-		mExpectedSwap.add(0);
-		mExpectedSwap.add(1);
-
-		//5 10 80 99
-		mExpectedSwap.add(2);
-		mExpectedSwap.add(3);*/
-
-		mLastSwap = 3;
-		mExpectFinalList = new Integer[] { 5, 10, 88, 99 };;
-		//mExpectFinalList = new Integer[] { 5, 10, 88, 99 };;
-	}
+class SortInsertTest extends SortAlgorithmTest {
+ 
 /*
 	@Test
 	final void swap1_01() throws exIsSorted {
@@ -73,5 +39,39 @@ class InsertionSortTest extends SortAlgorithmTest {
 		} catch (exIsSorted e) {
 		} 
 	}*/
+
+	@Override
+	protected void initSwaps() {
+		
+
+		mExpectedSwap.clear();
+		
+		//88 10 5 99
+		mExpectedSwap.add(0);
+		mExpectedSwap.add(1);
+		
+		//10 88 5 99
+		mExpectedSwap.add(1);
+		mExpectedSwap.add(2);
+
+		//10 5 80 99
+		mExpectedSwap.add(0);
+		mExpectedSwap.add(1);
+
+		//5 10 80 99
+
+		mLastSwap = 3;
+		mExpectFinalList = new Integer[] { 5, 10, 88, 99 };;
+	}
+
+	@Override
+	protected void initCUT() {
+		List<Integer> lList = new ArrayList<Integer>();
+		lList.add(88);
+		lList.add(10);
+		lList.add(5);
+		lList.add(99);
+		mCUT = new SortInsert( lList );
+	}
 
 }

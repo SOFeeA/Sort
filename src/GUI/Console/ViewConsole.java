@@ -22,4 +22,10 @@ public class ViewConsole extends View {
 		return new ControllerConsole((iController) mModel);
 	}
 
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

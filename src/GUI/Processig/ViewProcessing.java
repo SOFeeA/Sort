@@ -11,9 +11,9 @@ import processing.core.PApplet;
 
 public class ViewProcessing extends View {
 
-	private PApplet mApplet;
-	private List<Integer> mSwap = new ArrayList<Integer>();
+	private PApplet mApplet; 
 	private List<Integer> mList = new ArrayList<Integer>();
+	private String mSortAlgorithm = "";
 
 	public ViewProcessing(Model iModel) {
 		super(iModel);
@@ -25,40 +25,59 @@ public class ViewProcessing extends View {
 	}
 
 	public void display() {
-		if (!mList.isEmpty()) { 
-			mApplet.background(100);
-			for(int i =0; i<mModel.getSize();i++) { 
-				mApplet.fill(120,50,240);
-				/*
-				if(i==mSwap.get(0)) { 
-					mApplet.fill(120,200,240);
-				}
-				if(i==mSwap.get(1)) { 
-					mApplet.fill(120,200,240);
-				}*/
-				mApplet.rect(50+i*12, 50, 10, mList.get(0)); 
-				mList.remove(0);
-			}  
-			mSwap.remove(0);
-			mSwap.remove(0);
+		refreshDisplay();
+		if (!mList.isEmpty()) {
+			printSwaps(); 
+		}else {
+			printInitial();
 		}
+	}
+
+	protected void printSwaps() {
+		printTitle();
+		for (int i = 0; i < mModel.getSize(); i++) {
+			mApplet.fill(120, 50, 240);
+			mApplet.rect(50 + i * 12, 50, 10, mList.get(0));
+			mList.remove(0);
+		}
+	}
+
+	protected void refreshDisplay() {
+		mApplet.background(100);
+	}
+
+	protected void printInitial() {
+		printTitle();  
+		for (int i = 0; i < mModel.getSize(); i++) {
+			mApplet.fill(120, 50, 240);
+			mApplet.rect(50 + i * 12, 50, 10, mModel.getElement(i)); 
+		} 
+	}
+
+	protected void printTitle() {
+		mApplet.fill(250, 250, 250);
+		mApplet.text(mSortAlgorithm, 20, 20);
 	}
 
 	@Override
 	public void update() {
+		mSortAlgorithm = mModel.getSortAlgorithm();
 		Integer[] lSwap = mModel.getLastSwapPos();
 		if (lSwap.length > 0) {
-			if(lSwap[0]!=lSwap[1]) {
-				mSwap.add(lSwap[0]);
-				mSwap.add(lSwap[1]);
+			if (lSwap[0] != lSwap[1]) { 
 				mList.addAll(mModel.getList());
 			}
 		}
+		mApplet.redraw();
 	}
 
 	@Override
 	public Controller createController() {
 		return new ControllerProcessing((iController) mModel);
+	}
+
+	@Override
+	public void init() {
 	}
 
 }

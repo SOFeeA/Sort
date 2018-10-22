@@ -5,12 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Algorithm.SortAlgorithm;
-import Algorithm.exIsSorted; 
+import Algorithm.exIsSorted;
 
-class SortAlgorithmTest {
+abstract class SortAlgorithmTest {
 
 	protected SortAlgorithm mCUT;
 	protected List<Integer> mExpectedSwap = new ArrayList<Integer>();
@@ -61,6 +62,29 @@ class SortAlgorithmTest {
 		} catch (exIsSorted e) {
 			assertFinalList();
 		}
+	}
+
+	@Test
+	final void finishSort() {
+		int i=0;
+		try {
+			while (i++ < 100) {
+				mCUT.executeNextSwap();
+			}
+			fail("Not Finished " + mCUT.mList);
+		} catch (exIsSorted e) {
+		}
+	}
+
+	protected abstract void initSwaps();
+
+	protected abstract void initCUT() ;
+
+	@BeforeEach
+	void setUp() throws Exception {
+		initCUT();
+	
+		initSwaps();
 	}
 
 }

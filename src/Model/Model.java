@@ -3,9 +3,9 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-import Algorithm.BubbleSort;
-import Algorithm.InsertionSort;
 import Algorithm.SortAlgorithm;
+import Algorithm.SortBubble;
+import Algorithm.SortInsert;
 import MVC.iModelPresent;
 import MVC.iObserver;
 import MVC.eSortAlgorithm;
@@ -15,10 +15,11 @@ public class Model implements iController, iModelPresent {
 	private SortAlgorithm mSortAlgorithm = null;
 	private iObserver mObserver = null;
 	private Integer[] mLastSwap = new Integer[] {};
-	private List<Integer> mList = new ArrayList<Integer>();
+	private List<Integer> mList = new ArrayList<Integer>(); 
 
 	public Model() {
-		mSortAlgorithm = new BubbleSort(mList);
+		setSortAlgorithm(eSortAlgorithm.eSortBubble);
+		shuffle();
 	}
 
 	@Override
@@ -51,13 +52,17 @@ public class Model implements iController, iModelPresent {
 	public void setSortAlgorithm(eSortAlgorithm iAlgorithm) {
 		switch (iAlgorithm) {
 		case eSortBubble:
-			mSortAlgorithm = new BubbleSort(mList);
+			mSortAlgorithm = new SortBubble(mList);
 			break;
 		case eSortInsert:
-			mSortAlgorithm = new InsertionSort(mList);
+			mSortAlgorithm = new SortInsert(mList);
 			break;
 		}
 		mSortAlgorithm.setList(mList);
+		if (mObserver != null) {
+			mObserver.init();
+			mObserver.update();
+		}
 	}
 
 	@Override
@@ -72,18 +77,29 @@ public class Model implements iController, iModelPresent {
 		mList.add(25);
 		mList.add(35);
 		mList.add(75);
-		mList.add(64);
-		mObserver.update();
+		mList.add(64); 
+
 		mSortAlgorithm.setList(mList);
+		if (mObserver != null) {
+			mObserver.init();
+			mObserver.update();
+		}
 	}
 
 	@Override
 	public void registerView(iObserver iView) {
 		mObserver = iView;
+		mObserver.update();
 	}
 
 	@Override
 	public int getSize() {
 		return mList.size();
 	}
+
+	@Override
+	public String getSortAlgorithm() {
+		return mSortAlgorithm.getName();
+	}
+ 
 }

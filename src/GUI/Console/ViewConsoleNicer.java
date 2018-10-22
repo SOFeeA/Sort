@@ -52,4 +52,9 @@ public class ViewConsoleNicer extends View {
 		return new ControllerConsole((iController) mModel);
 	}
 
+	@Override
+	public void init() { 
+		System.out.println(mModel.getSortAlgorithm());
+	}
+
 }

@@ -18,4 +18,6 @@ public abstract class SortAlgorithm {
 	}
 
 	protected abstract void initNewList();
+
+	public abstract String getName();
 }
